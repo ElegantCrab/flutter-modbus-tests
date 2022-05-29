@@ -37,8 +37,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  dynamic valorLeido;
-  dynamic inputRegisterLeido;
+  dynamic valueRead;
+  dynamic registerRead;
 
   @override
   Widget build(BuildContext context) {
@@ -51,15 +51,15 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              ServicioModbus.estadoConexion ? "CONNECTED TO PLC: 192.168.1.20" : "DISCONNECTED",
+              ServicioModbus.statusConnection ? "CONNECTED TO PLC: 192.168.1.20" : "DISCONNECTED",
               style: Theme.of(context).textTheme.headline5,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
             const SizedBox(height: 20),
-            valorLeido != null ? Text("Coil read: " + (valorLeido?.toString() ?? ""), style: Theme.of(context).textTheme.headline5,
+            valueRead != null ? Text("Coil read: " + (valueRead?.toString() ?? ""), style: Theme.of(context).textTheme.headline5,
               textAlign: TextAlign.center,) : Container(),
-            inputRegisterLeido != null ? Text("InputRegister read: " + (inputRegisterLeido?.toString() ?? ""), style: Theme.of(context).textTheme.headline5,
+            registerRead != null ? Text("InputRegister read: " + (registerRead?.toString() ?? ""), style: Theme.of(context).textTheme.headline5,
               textAlign: TextAlign.center) : Container(),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
              ElevatedButton(
               onPressed: () async {
                   var coil = await ServicioModbus.leerCoil(3);
-                  valorLeido = coil[0];
+                  valueRead = coil[0];
                   setState((){});
               }, 
               child: const Text("READ COIL"),
@@ -92,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: () async {
                   var inputR = await ServicioModbus.leerInputRegister(3);
-                  inputRegisterLeido = inputR?[0];
+                  registerRead = inputR?[0];
                   setState((){});
               }, 
               child: const Text("READ INPUTREGISTER"),
@@ -100,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: () async {
                   var inputR = await ServicioModbus.leerHoldingR(0);
-                  inputRegisterLeido = inputR?[0];
+                  registerRead = inputR?[0];
                   setState((){});
               }, 
               child: const Text("READ HOLDINGREGISTER"),
