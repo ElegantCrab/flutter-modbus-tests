@@ -51,15 +51,15 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              ServicioModbus.estadoConexion ? "CONECTADO A PLC EN 192.168.1.20" : "DESCONECTADO",
+              ServicioModbus.estadoConexion ? "CONNECTED TO PLC: 192.168.1.20" : "DISCONNECTED",
               style: Theme.of(context).textTheme.headline5,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
             const SizedBox(height: 20),
-            valorLeido != null ? Text("Coil Leído: " + (valorLeido?.toString() ?? ""), style: Theme.of(context).textTheme.headline5,
+            valorLeido != null ? Text("Coil read: " + (valorLeido?.toString() ?? ""), style: Theme.of(context).textTheme.headline5,
               textAlign: TextAlign.center,) : Container(),
-            inputRegisterLeido != null ? Text("InputRegister Leído: " + (inputRegisterLeido?.toString() ?? ""), style: Theme.of(context).textTheme.headline5,
+            inputRegisterLeido != null ? Text("InputRegister read: " + (inputRegisterLeido?.toString() ?? ""), style: Theme.of(context).textTheme.headline5,
               textAlign: TextAlign.center) : Container(),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     
                   });
               }, 
-              child: const Text("CONECTAR"),
+              child: const Text("CONNECT"),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     
                   });
               }, 
-              child: const Text("DESCONECTAR"),
+              child: const Text("DISCONNECT"),
             ),
              ElevatedButton(
               onPressed: () async {
@@ -87,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   valorLeido = coil[0];
                   setState((){});
               }, 
-              child: const Text("LEER COIL"),
+              child: const Text("READ COIL"),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -95,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   inputRegisterLeido = inputR?[0];
                   setState((){});
               }, 
-              child: const Text("LEER INPUTREGISTER"),
+              child: const Text("READ INPUTREGISTER"),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   inputRegisterLeido = inputR?[0];
                   setState((){});
               }, 
-              child: const Text("LEER INPUTREGISTER"),
+              child: const Text("READ HOLDINGREGISTER"),
             ),
           ],
         ),

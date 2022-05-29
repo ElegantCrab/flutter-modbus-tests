@@ -82,7 +82,7 @@ packages:
     source: hosted
     version: "1.0.1"
   logging:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: logging
       url: "https://pub.dartlang.org"
@@ -109,15 +109,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
-  modbus:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "84171dbc7ce06319e7237c0c8221416982b4df99"
-      url: "https://github.com/ElegantCrab/modbus-dart"
-    source: git
-    version: "0.1.1"
   path:
     dependency: transitive
     description:
@@ -187,4 +178,4 @@ packages:
     source: hosted
     version: "2.1.1"
 sdks:
-  dart: ">=2.16.2 <3.0.0"
+  dart: ">=2.16.0 <3.0.0"

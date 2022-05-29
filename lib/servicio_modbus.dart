@@ -1,7 +1,9 @@
 
 import 'dart:typed_data';
 
-import 'package:modbus/modbus.dart';
+import 'package:pruebasmodbus/modbus_dart/lib/modbus.dart';
+
+// import 'package:modbus/modbus.dart';
 
 class ServicioModbus {
 
