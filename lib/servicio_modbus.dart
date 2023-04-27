@@ -1,4 +1,5 @@
 
+import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:pruebasmodbus/modbus_dart/lib/modbus.dart';
@@ -30,6 +31,7 @@ class ServicioModbus {
      var coil = await client!.readCoils(0x0002, 1);
      return coil;
     }catch(e) {
+      statusConnection = false;
       return [];
     }
 
@@ -37,19 +39,23 @@ class ServicioModbus {
 
   static Future<Uint16List?> leerInputRegister(int address) async {
     try {
-      var ir = await client!.readInputRegisters(0x0001, 1);
+      var ir = await client!.readInputRegisters(1, 1);
       return ir;
     } catch(e) {
+      statusConnection = false;
       return null;
     }
   }
 
-    static Future<Uint16List?> leerHoldingR(int address) async {
+  static Future<Uint16List?> readHoldingR(int address) async {
     try {
-      var ir = await client!.readHoldingRegisters(0x0000, 1);
+      var ir = await client!.readHoldingRegisters(0x0002, 1);
       return ir;
     } catch(e) {
-      return null;
+      log(e.toString());
+      statusConnection = false;
+      configurar("10.0.2.2", 502);
+      return Uint16List.fromList([]);
     }
   }
 

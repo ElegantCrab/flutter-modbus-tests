@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              ServicioModbus.statusConnection ? "CONNECTED TO PLC: 192.168.1.20" : "DISCONNECTED",
+              ServicioModbus.statusConnection ? "CONNECTED TO PLC: 192.168.1.5" : "DISCONNECTED",
               style: Theme.of(context).textTheme.headline5,
               textAlign: TextAlign.center,
             ),
@@ -84,6 +84,8 @@ class _MyHomePageState extends State<MyHomePage> {
              ElevatedButton(
               onPressed: () async {
                   var coil = await ServicioModbus.leerCoil(3);
+                  setState((){});
+                  if(coil.isEmpty) return;
                   valueRead = coil[0];
                   setState((){});
               }, 
@@ -92,15 +94,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton(
               onPressed: () async {
                   var inputR = await ServicioModbus.leerInputRegister(3);
-                  registerRead = inputR?[0];
+                  registerRead = (inputR?.isEmpty ?? true) ? 0 : inputR?[0] ?? 0;
                   setState((){});
               }, 
               child: const Text("READ INPUTREGISTER"),
             ),
             ElevatedButton(
               onPressed: () async {
-                  var inputR = await ServicioModbus.leerHoldingR(0);
-                  registerRead = inputR?[0];
+                  var inputR = await ServicioModbus.readHoldingR(0);
+                  registerRead = (inputR?.isEmpty ?? true) ? 0 : inputR?[0] ?? 0;
                   setState((){});
               }, 
               child: const Text("READ HOLDINGREGISTER"),

@@ -118,7 +118,7 @@ class ModbusClientImpl extends ModbusClient {
       } else {
         _completer!.complete(responseData);
       }
-    });
+    }).timeout(const Duration(seconds: 2));
   }
 
   @override
